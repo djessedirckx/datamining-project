@@ -4,11 +4,11 @@ import time
 
 # Read training data
 training_file_path = "../Data/train.json"
-data = pd.read_json(training_file_path, orient='columns')
+data = pd.read_json(training_file_path, orient='columns').head(500)
 
 # Extract X (ingredients) and y (cuisine)
 X = data['ingredients']
-y = data['cuisine']
+# y = data['cuisine']
 
 # Create a unique set of ingredients
 ingredient_set = set()
@@ -19,17 +19,16 @@ for ingredients in X:
 # Convert set to list to create indexes
 ingredients_list = list(ingredient_set)
 
-# Create a unique set of cuisines
-cuisine_set = set()
-for cuisine in y:
-    cuisine_set.add(cuisine)
+# # Create a unique set of cuisines
+# cuisine_set = set()
+# for cuisine in y:
+#     cuisine_set.add(cuisine)
     
-# Convert set to list to create indexes
-cuisine_list = list(cuisine_set)
+# # Convert set to list to create indexes
+# cuisine_list = list(cuisine_set)
 
 # Add a column for every ingredient to the dataframe
 i = 0
-start = time.time()
 for ingredient in ingredients_list:
     i = i + 1
     
@@ -45,12 +44,11 @@ for ingredient in ingredients_list:
             scores.append(0)
     
     data[ingredient] = scores
-end = time.time()
-
-print('Execution time: {}'.format(end - start))
 
 # Drop ingredients column
 data = data.drop(['ingredients'],axis=1)
 
-# Write file to json
-data.to_json(r'training_binary.json')
+# Write file to csv
+data.to_csv(r'training_binary.csv')
+
+print(len(data.columns))
