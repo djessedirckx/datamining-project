@@ -6,9 +6,8 @@ import time
 training_file_path = "../Data/train.json"
 data = pd.read_json(training_file_path, orient='columns').head(500)
 
-# Extract X (ingredients) and y (cuisine)
+# Extract X (ingredients)
 X = data['ingredients']
-# y = data['cuisine']
 
 # Create a unique set of ingredients
 ingredient_set = set()
@@ -18,14 +17,6 @@ for ingredients in X:
         
 # Convert set to list to create indexes
 ingredients_list = list(ingredient_set)
-
-# # Create a unique set of cuisines
-# cuisine_set = set()
-# for cuisine in y:
-#     cuisine_set.add(cuisine)
-    
-# # Convert set to list to create indexes
-# cuisine_list = list(cuisine_set)
 
 # Add a column for every ingredient to the dataframe
 i = 0
