@@ -39,6 +39,6 @@ def convert_to_binary(data):
 
     # Write file to csv
     print('Writing data to csv')
-    data.to_csv(r'training_binary.csv', index=False)
+    data.to_csv(r'test_binary.csv', index=False)
 
     print(len(data.columns))
